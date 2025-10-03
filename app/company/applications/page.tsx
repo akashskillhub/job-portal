@@ -199,7 +199,7 @@ export default function CompanyApplicationsPage() {
         <CardContent>
           <div className="mb-6">
             <div className="flex flex-col lg:flex-row gap-3">
-              <div className="relative w-full lg:w-[280px]">
+              <div className="relative w-full lg:flex-1">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input
                   placeholder="Search student, email, job..."
