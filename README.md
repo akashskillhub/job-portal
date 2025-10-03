@@ -163,18 +163,80 @@ After seeding the database (see [Database Setup](#database-setup) below), you ca
 - **Email:** hr@techcorp.com
 - **Password:** password123
 - **Industry:** Information Technology
+- **Size:** 501-1000
+- **Location:** Bangalore, Karnataka
 - **Status:** Approved
 
 **Company 2 - InnovateSoft (Approved)**
 - **Email:** careers@innovatesoft.com
 - **Password:** password123
 - **Industry:** Software Development
+- **Size:** 51-200
+- **Location:** Hyderabad, Telangana
 - **Status:** Approved
 
-**Company 3 - DataMinds Analytics (Pending)**
+**Company 3 - DataMinds Analytics (Approved)**
 - **Email:** hiring@dataminds.com
 - **Password:** password123
 - **Industry:** Data Analytics
+- **Size:** 11-50
+- **Location:** Pune, Maharashtra
+- **Status:** Approved
+
+**Company 4 - CloudNine Technologies (Approved)**
+- **Email:** jobs@cloudnine.com
+- **Password:** password123
+- **Industry:** Cloud Computing
+- **Size:** 201-500
+- **Location:** Mumbai, Maharashtra
+- **Status:** Approved
+
+**Company 5 - CyberSecure India (Approved)**
+- **Email:** recruitment@cybersecure.in
+- **Password:** password123
+- **Industry:** Cybersecurity
+- **Size:** 101-200
+- **Location:** Delhi
+- **Status:** Approved
+
+**Company 6 - FinTech Solutions Ltd (Approved)**
+- **Email:** hr@fintech.com
+- **Password:** password123
+- **Industry:** Financial Technology
+- **Size:** 301-500
+- **Location:** Bangalore, Karnataka
+- **Status:** Approved
+
+**Company 7 - AI Innovations Hub (Approved)**
+- **Email:** careers@aiinnovations.com
+- **Password:** password123
+- **Industry:** Artificial Intelligence
+- **Size:** 51-100
+- **Location:** Pune, Maharashtra
+- **Status:** Approved
+
+**Company 8 - MobileFirst Apps (Approved)**
+- **Email:** jobs@mobilefirst.com
+- **Password:** password123
+- **Industry:** Mobile Development
+- **Size:** 51-100
+- **Location:** Chennai, Tamil Nadu
+- **Status:** Approved
+
+**Company 9 - GameDev Studios (Approved)**
+- **Email:** hr@gamedev.com
+- **Password:** password123
+- **Industry:** Gaming
+- **Size:** 101-200
+- **Location:** Hyderabad, Telangana
+- **Status:** Approved
+
+**Company 10 - EduTech Platform (Pending Approval)**
+- **Email:** careers@edutech.com
+- **Password:** password123
+- **Industry:** Education Technology
+- **Size:** 201-300
+- **Location:** Bangalore, Karnataka
 - **Status:** Pending Approval (requires admin approval)
 
 ### College Accounts
@@ -200,7 +262,7 @@ npm run seed
 This will create:
 - 1 Admin account
 - 2 Colleges
-- 3 Companies (2 approved, 1 pending)
+- 10 Companies (9 approved, 1 pending)
 - 4 Students
 - 3 Jobs
 - 4 Sample applications

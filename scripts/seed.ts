@@ -79,7 +79,7 @@ async function seedDatabase() {
         website: "https://techcorp.com",
         industry: "Information Technology",
         size: "501-1000",
-        description: "Leading IT solutions provider",
+        description: "Leading IT solutions provider specializing in enterprise software",
         address: "789 Tech Park",
         city: "Bangalore",
         state: "Karnataka",
@@ -93,7 +93,7 @@ async function seedDatabase() {
         website: "https://innovatesoft.com",
         industry: "Software Development",
         size: "51-200",
-        description: "Innovative software solutions",
+        description: "Innovative software solutions for startups and enterprises",
         address: "321 Innovation Hub",
         city: "Hyderabad",
         state: "Telangana",
@@ -107,15 +107,113 @@ async function seedDatabase() {
         website: "https://dataminds.com",
         industry: "Data Analytics",
         size: "11-50",
-        description: "Data analytics and AI solutions",
+        description: "Data analytics and AI solutions for business intelligence",
         address: "555 Data Street",
         city: "Pune",
         state: "Maharashtra",
         phone: "9876543214",
+        isApproved: true,
+      },
+      {
+        name: "CloudNine Technologies",
+        email: "jobs@cloudnine.com",
+        password: hashedPassword,
+        website: "https://cloudnine.com",
+        industry: "Cloud Computing",
+        size: "201-500",
+        description: "Cloud infrastructure and DevOps solutions provider",
+        address: "42 Cloud Avenue",
+        city: "Mumbai",
+        state: "Maharashtra",
+        phone: "9876543215",
+        isApproved: true,
+      },
+      {
+        name: "CyberSecure India",
+        email: "recruitment@cybersecure.in",
+        password: hashedPassword,
+        website: "https://cybersecure.in",
+        industry: "Cybersecurity",
+        size: "101-200",
+        description: "Comprehensive cybersecurity solutions and consulting",
+        address: "88 Security Plaza",
+        city: "Delhi",
+        state: "Delhi",
+        phone: "9876543216",
+        isApproved: true,
+      },
+      {
+        name: "FinTech Solutions Ltd",
+        email: "hr@fintech.com",
+        password: hashedPassword,
+        website: "https://fintech.com",
+        industry: "Financial Technology",
+        size: "301-500",
+        description: "Digital payment solutions and banking technology",
+        address: "234 Finance Tower",
+        city: "Bangalore",
+        state: "Karnataka",
+        phone: "9876543217",
+        isApproved: true,
+      },
+      {
+        name: "AI Innovations Hub",
+        email: "careers@aiinnovations.com",
+        password: hashedPassword,
+        website: "https://aiinnovations.com",
+        industry: "Artificial Intelligence",
+        size: "51-100",
+        description: "Machine learning and AI research and development",
+        address: "77 AI Street",
+        city: "Pune",
+        state: "Maharashtra",
+        phone: "9876543218",
+        isApproved: true,
+      },
+      {
+        name: "MobileFirst Apps",
+        email: "jobs@mobilefirst.com",
+        password: hashedPassword,
+        website: "https://mobilefirst.com",
+        industry: "Mobile Development",
+        size: "51-100",
+        description: "iOS and Android app development company",
+        address: "99 App Lane",
+        city: "Chennai",
+        state: "Tamil Nadu",
+        phone: "9876543219",
+        isApproved: true,
+      },
+      {
+        name: "GameDev Studios",
+        email: "hr@gamedev.com",
+        password: hashedPassword,
+        website: "https://gamedev.com",
+        industry: "Gaming",
+        size: "101-200",
+        description: "Game development and interactive entertainment",
+        address: "123 Gaming Street",
+        city: "Hyderabad",
+        state: "Telangana",
+        phone: "9876543220",
+        isApproved: true,
+      },
+      {
+        name: "EduTech Platform",
+        email: "careers@edutech.com",
+        password: hashedPassword,
+        website: "https://edutech.com",
+        industry: "Education Technology",
+        size: "201-300",
+        description: "Online learning platforms and educational software",
+        address: "456 Education Hub",
+        city: "Bangalore",
+        state: "Karnataka",
+        phone: "9876543221",
         isApproved: false, // Pending approval
       },
     ]);
-    console.log(`✓ Created ${companies.length} companies (1 pending approval)`);
+    console.log(`✓ Created ${companies.length} companies (9 approved, 1 pending approval)`);
 
     // Create Students
     const students = await Student.insertMany([
@@ -289,14 +387,35 @@ async function seedDatabase() {
     console.log("\n🏫 College 2:");
     console.log("   Email: anna@example.com");
     console.log("   Password: password123");
-    console.log("\n🏢 Company 1 (Approved):");
+    console.log("\n🏢 Company 1 - TechCorp Solutions (Approved):");
     console.log("   Email: hr@techcorp.com");
     console.log("   Password: password123");
-    console.log("\n🏢 Company 2 (Approved):");
+    console.log("\n🏢 Company 2 - InnovateSoft (Approved):");
     console.log("   Email: careers@innovatesoft.com");
     console.log("   Password: password123");
-    console.log("\n🏢 Company 3 (Pending Approval):");
+    console.log("\n🏢 Company 3 - DataMinds Analytics (Approved):");
     console.log("   Email: hiring@dataminds.com");
+    console.log("   Password: password123");
+    console.log("\n🏢 Company 4 - CloudNine Technologies (Approved):");
+    console.log("   Email: jobs@cloudnine.com");
+    console.log("   Password: password123");
+    console.log("\n🏢 Company 5 - CyberSecure India (Approved):");
+    console.log("   Email: recruitment@cybersecure.in");
+    console.log("   Password: password123");
+    console.log("\n🏢 Company 6 - FinTech Solutions Ltd (Approved):");
+    console.log("   Email: hr@fintech.com");
+    console.log("   Password: password123");
+    console.log("\n🏢 Company 7 - AI Innovations Hub (Approved):");
+    console.log("   Email: careers@aiinnovations.com");
+    console.log("   Password: password123");
+    console.log("\n🏢 Company 8 - MobileFirst Apps (Approved):");
+    console.log("   Email: jobs@mobilefirst.com");
+    console.log("   Password: password123");
+    console.log("\n🏢 Company 9 - GameDev Studios (Approved):");
+    console.log("   Email: hr@gamedev.com");
+    console.log("   Password: password123");
+    console.log("\n🏢 Company 10 - EduTech Platform (Pending Approval):");
+    console.log("   Email: careers@edutech.com");
     console.log("   Password: password123");
     console.log("\n🎓 Student 1:");
     console.log("   Email: john.doe@student.com");
