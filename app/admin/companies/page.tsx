@@ -5,18 +5,32 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { Trash2, ChevronLeft, ChevronRight } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Trash2, ChevronLeft, ChevronRight, Search, X } from "lucide-react";
 
 const ITEMS_PER_PAGE = 5;
 
 export default function CompaniesPage() {
   const [companies, setCompanies] = useState<any[]>([]);
+  const [filteredCompanies, setFilteredCompanies] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [industryFilter, setIndustryFilter] = useState("all");
+  const [sizeFilter, setSizeFilter] = useState("all");
+  const [statusFilter, setStatusFilter] = useState("all");
+  const [cityFilter, setCityFilter] = useState("all");
+  const [sortBy, setSortBy] = useState("name");
 
   useEffect(() => {
     fetchCompanies();
   }, []);
+
+  useEffect(() => {
+    applyFilters();
+    setCurrentPage(1);
+  }, [companies, searchTerm, industryFilter, sizeFilter, statusFilter, cityFilter, sortBy]);
 
   const fetchCompanies = async () => {
     try {
@@ -28,6 +42,78 @@ export default function CompaniesPage() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const applyFilters = () => {
+    let filtered = [...companies];
+
+    // Search filter
+    if (searchTerm) {
+      filtered = filtered.filter((company) =>
+        company.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        company.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        company.industry.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+
+    // Industry filter
+    if (industryFilter !== "all") {
+      filtered = filtered.filter((company) => company.industry === industryFilter);
+    }
+
+    // Size filter
+    if (sizeFilter !== "all") {
+      filtered = filtered.filter((company) => company.size === sizeFilter);
+    }
+
+    // Status filter
+    if (statusFilter !== "all") {
+      filtered = filtered.filter((company) =>
+        statusFilter === "approved" ? company.isApproved : !company.isApproved
+      );
+    }
+
+    // City filter
+    if (cityFilter !== "all") {
+      filtered = filtered.filter((company) => company.city === cityFilter);
+    }
+
+    // Sorting
+    switch (sortBy) {
+      case "name":
+        filtered.sort((a, b) => a.name.localeCompare(b.name));
+        break;
+      case "industry":
+        filtered.sort((a, b) => a.industry.localeCompare(b.industry));
+        break;
+      case "size":
+        filtered.sort((a, b) => a.size.localeCompare(b.size));
+        break;
+    }
+
+    setFilteredCompanies(filtered);
+  };
+
+  const clearFilters = () => {
+    setSearchTerm("");
+    setIndustryFilter("all");
+    setSizeFilter("all");
+    setStatusFilter("all");
+    setCityFilter("all");
+    setSortBy("name");
+    setCurrentPage(1);
+  };
+
+  const getUniqueIndustries = () => {
+    return [...new Set(companies.map((c) => c.industry))];
+  };
+
+  const getUniqueSizes = () => {
+    return [...new Set(companies.map((c) => c.size))];
+  };
+
+  const getUniqueCities = () => {
+    return [...new Set(companies.map((c) => c.city))];
   };
 
   const handleDelete = async (id: string) => {
@@ -46,10 +132,10 @@ export default function CompaniesPage() {
   };
 
   // Pagination logic
-  const totalPages = Math.ceil(companies.length / ITEMS_PER_PAGE);
+  const totalPages = Math.ceil(filteredCompanies.length / ITEMS_PER_PAGE);
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const endIndex = startIndex + ITEMS_PER_PAGE;
-  const currentCompanies = companies.slice(startIndex, endIndex);
+  const currentCompanies = filteredCompanies.slice(startIndex, endIndex);
 
   const handlePreviousPage = () => {
     setCurrentPage((prev) => Math.max(prev - 1, 1));
@@ -68,16 +154,97 @@ export default function CompaniesPage() {
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-3xl font-bold tracking-tight">Companies</h2>
-          <p className="text-muted-foreground">Manage company accounts ({companies.length} total)</p>
+          <p className="text-muted-foreground">Manage company accounts</p>
         </div>
       </div>
 
       <Card>
         <CardHeader>
-          <CardTitle>All Companies</CardTitle>
+          <CardTitle>All Companies ({filteredCompanies.length})</CardTitle>
         </CardHeader>
         <CardContent>
-          {companies.length === 0 ? (
+          <div className="space-y-4 mb-6">
+            <div className="flex flex-col md:flex-row gap-4">
+              <div className="flex-1 relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Input
+                  placeholder="Search by name, email, or industry..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="pl-10"
+                />
+              </div>
+              <Select value={industryFilter} onValueChange={setIndustryFilter}>
+                <SelectTrigger className="w-full md:w-[200px]">
+                  <SelectValue placeholder="Industry" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Industries</SelectItem>
+                  {getUniqueIndustries().map((industry) => (
+                    <SelectItem key={industry} value={industry}>
+                      {industry}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <Select value={sizeFilter} onValueChange={setSizeFilter}>
+                <SelectTrigger className="w-full md:w-[180px]">
+                  <SelectValue placeholder="Size" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Sizes</SelectItem>
+                  {getUniqueSizes().map((size) => (
+                    <SelectItem key={size} value={size}>
+                      {size}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="flex flex-col md:flex-row gap-4">
+              <Select value={cityFilter} onValueChange={setCityFilter}>
+                <SelectTrigger className="w-full md:w-[180px]">
+                  <SelectValue placeholder="City" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Cities</SelectItem>
+                  {getUniqueCities().map((city) => (
+                    <SelectItem key={city} value={city}>
+                      {city}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <Select value={statusFilter} onValueChange={setStatusFilter}>
+                <SelectTrigger className="w-full md:w-[180px]">
+                  <SelectValue placeholder="Status" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Status</SelectItem>
+                  <SelectItem value="approved">Approved</SelectItem>
+                  <SelectItem value="pending">Pending</SelectItem>
+                </SelectContent>
+              </Select>
+              <Select value={sortBy} onValueChange={setSortBy}>
+                <SelectTrigger className="w-full md:w-[180px]">
+                  <SelectValue placeholder="Sort by" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="name">Name (A-Z)</SelectItem>
+                  <SelectItem value="industry">Industry</SelectItem>
+                  <SelectItem value="size">Company Size</SelectItem>
+                </SelectContent>
+              </Select>
+              {(searchTerm || industryFilter !== "all" || sizeFilter !== "all" || statusFilter !== "all" || cityFilter !== "all" || sortBy !== "name") && (
+                <Button variant="outline" onClick={clearFilters}>
+                  <X className="h-4 w-4 mr-2" />
+                  Clear Filters
+                </Button>
+              )}
+            </div>
+          </div>
+
+          {filteredCompanies.length === 0 ? (
             <p className="text-center py-8 text-muted-foreground">No companies found</p>
           ) : (
             <>
@@ -124,7 +291,7 @@ export default function CompaniesPage() {
               {totalPages > 1 && (
                 <div className="flex items-center justify-between mt-4">
                   <p className="text-sm text-muted-foreground">
-                    Showing {startIndex + 1} to {Math.min(endIndex, companies.length)} of {companies.length} companies
+                    Showing {startIndex + 1} to {Math.min(endIndex, filteredCompanies.length)} of {filteredCompanies.length} companies
                   </p>
                   <div className="flex items-center gap-2">
                     <Button
