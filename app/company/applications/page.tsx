@@ -4,12 +4,13 @@ import { useEffect, useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { formatDate } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
-import { Eye, FileText, Phone, Mail, GraduationCap, Award, X, ChevronLeft, ChevronRight } from "lucide-react";
+import { Eye, FileText, Phone, Mail, GraduationCap, Award, X, ChevronLeft, ChevronRight, Search } from "lucide-react";
 
 const ITEMS_PER_PAGE = 5;
 
@@ -19,6 +20,7 @@ export default function CompanyApplicationsPage() {
   const [loading, setLoading] = useState(true);
   const [selectedStudent, setSelectedStudent] = useState<any>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
   const [statusFilter, setStatusFilter] = useState("all");
   const [cgpaFilter, setCgpaFilter] = useState("all");
   const [streamFilter, setStreamFilter] = useState("all");
@@ -33,7 +35,7 @@ export default function CompanyApplicationsPage() {
   useEffect(() => {
     applyFilters();
     setCurrentPage(1);
-  }, [applications, statusFilter, cgpaFilter, streamFilter, sortBy]);
+  }, [applications, searchTerm, statusFilter, cgpaFilter, streamFilter, sortBy]);
 
   const fetchApplications = async () => {
     try {
@@ -49,6 +51,20 @@ export default function CompanyApplicationsPage() {
 
   const applyFilters = () => {
     let filtered = [...applications];
+
+    // Search filter
+    if (searchTerm) {
+      filtered = filtered.filter((app) => {
+        const studentName = `${app.studentId?.firstName} ${app.studentId?.lastName}`.toLowerCase();
+        const email = app.studentId?.email?.toLowerCase() || "";
+        const jobTitle = app.jobId?.title?.toLowerCase() || "";
+        return (
+          studentName.includes(searchTerm.toLowerCase()) ||
+          email.includes(searchTerm.toLowerCase()) ||
+          jobTitle.includes(searchTerm.toLowerCase())
+        );
+      });
+    }
 
     // Status filter
     if (statusFilter !== "all") {
@@ -93,6 +109,7 @@ export default function CompanyApplicationsPage() {
   };
 
   const clearFilters = () => {
+    setSearchTerm("");
     setStatusFilter("all");
     setCgpaFilter("all");
     setStreamFilter("all");
@@ -182,6 +199,15 @@ export default function CompanyApplicationsPage() {
         <CardContent>
           <div className="space-y-4 mb-6">
             <div className="flex flex-col md:flex-row gap-4">
+              <div className="flex-1 relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Input
+                  placeholder="Search by student name, email, or job title..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="pl-10"
+                />
+              </div>
               <Select value={statusFilter} onValueChange={setStatusFilter}>
                 <SelectTrigger className="w-full md:w-[180px]">
                   <SelectValue placeholder="Status" />
@@ -194,7 +220,8 @@ export default function CompanyApplicationsPage() {
                   <SelectItem value="hired">Hired</SelectItem>
                 </SelectContent>
               </Select>
-
+            </div>
+            <div className="flex flex-col md:flex-row gap-4">
               <Select value={cgpaFilter} onValueChange={setCgpaFilter}>
                 <SelectTrigger className="w-full md:w-[180px]">
                   <SelectValue placeholder="CGPA Range" />
@@ -234,7 +261,7 @@ export default function CompanyApplicationsPage() {
                 </SelectContent>
               </Select>
 
-              {(statusFilter !== "all" || cgpaFilter !== "all" || streamFilter !== "all" || sortBy !== "newest") && (
+              {(searchTerm || statusFilter !== "all" || cgpaFilter !== "all" || streamFilter !== "all" || sortBy !== "newest") && (
                 <Button variant="outline" onClick={clearFilters}>
                   <X className="h-4 w-4 mr-2" />
                   Clear
