@@ -195,7 +195,7 @@ After seeding the database (see [Database Setup](#database-setup) below), you ca
 - **Email:** recruitment@cybersecure.in
 - **Password:** password123
 - **Industry:** Cybersecurity
-- **Size:** 101-200
+- **Size:** 51-200
 - **Location:** Delhi
 - **Status:** Approved
 
@@ -203,7 +203,7 @@ After seeding the database (see [Database Setup](#database-setup) below), you ca
 - **Email:** hr@fintech.com
 - **Password:** password123
 - **Industry:** Financial Technology
-- **Size:** 301-500
+- **Size:** 201-500
 - **Location:** Bangalore, Karnataka
 - **Status:** Approved
 
@@ -211,7 +211,7 @@ After seeding the database (see [Database Setup](#database-setup) below), you ca
 - **Email:** careers@aiinnovations.com
 - **Password:** password123
 - **Industry:** Artificial Intelligence
-- **Size:** 51-100
+- **Size:** 51-200
 - **Location:** Pune, Maharashtra
 - **Status:** Approved
 
@@ -219,7 +219,7 @@ After seeding the database (see [Database Setup](#database-setup) below), you ca
 - **Email:** jobs@mobilefirst.com
 - **Password:** password123
 - **Industry:** Mobile Development
-- **Size:** 51-100
+- **Size:** 51-200
 - **Location:** Chennai, Tamil Nadu
 - **Status:** Approved
 
@@ -227,7 +227,7 @@ After seeding the database (see [Database Setup](#database-setup) below), you ca
 - **Email:** hr@gamedev.com
 - **Password:** password123
 - **Industry:** Gaming
-- **Size:** 101-200
+- **Size:** 51-200
 - **Location:** Hyderabad, Telangana
 - **Status:** Approved
 
@@ -235,7 +235,7 @@ After seeding the database (see [Database Setup](#database-setup) below), you ca
 - **Email:** careers@edutech.com
 - **Password:** password123
 - **Industry:** Education Technology
-- **Size:** 201-300
+- **Size:** 201-500
 - **Location:** Bangalore, Karnataka
 - **Status:** Pending Approval (requires admin approval)
 
