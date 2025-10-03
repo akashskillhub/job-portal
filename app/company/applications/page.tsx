@@ -197,19 +197,20 @@ export default function CompanyApplicationsPage() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="space-y-4 mb-6">
-            <div className="flex flex-col md:flex-row gap-4">
-              <div className="flex-1 relative">
+          <div className="mb-6">
+            <div className="flex flex-col lg:flex-row gap-3">
+              <div className="relative w-full lg:w-[280px]">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input
-                  placeholder="Search by student name, email, or job title..."
+                  placeholder="Search student, email, job..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="pl-10"
                 />
               </div>
+
               <Select value={statusFilter} onValueChange={setStatusFilter}>
-                <SelectTrigger className="w-full md:w-[180px]">
+                <SelectTrigger className="w-full lg:w-[150px]">
                   <SelectValue placeholder="Status" />
                 </SelectTrigger>
                 <SelectContent>
@@ -220,23 +221,22 @@ export default function CompanyApplicationsPage() {
                   <SelectItem value="hired">Hired</SelectItem>
                 </SelectContent>
               </Select>
-            </div>
-            <div className="flex flex-col md:flex-row gap-4">
+
               <Select value={cgpaFilter} onValueChange={setCgpaFilter}>
-                <SelectTrigger className="w-full md:w-[180px]">
-                  <SelectValue placeholder="CGPA Range" />
+                <SelectTrigger className="w-full lg:w-[140px]">
+                  <SelectValue placeholder="CGPA" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">All CGPA</SelectItem>
-                  <SelectItem value="9+">9.0 and above</SelectItem>
-                  <SelectItem value="8-9">8.0 - 8.9</SelectItem>
-                  <SelectItem value="7-8">7.0 - 7.9</SelectItem>
-                  <SelectItem value="<7">Below 7.0</SelectItem>
+                  <SelectItem value="9+">9.0+</SelectItem>
+                  <SelectItem value="8-9">8.0-8.9</SelectItem>
+                  <SelectItem value="7-8">7.0-7.9</SelectItem>
+                  <SelectItem value="<7">&lt;7.0</SelectItem>
                 </SelectContent>
               </Select>
 
               <Select value={streamFilter} onValueChange={setStreamFilter}>
-                <SelectTrigger className="w-full md:w-[180px]">
+                <SelectTrigger className="w-full lg:w-[150px]">
                   <SelectValue placeholder="Stream" />
                 </SelectTrigger>
                 <SelectContent>
@@ -250,19 +250,19 @@ export default function CompanyApplicationsPage() {
               </Select>
 
               <Select value={sortBy} onValueChange={setSortBy}>
-                <SelectTrigger className="w-full md:w-[180px]">
-                  <SelectValue placeholder="Sort by" />
+                <SelectTrigger className="w-full lg:w-[150px]">
+                  <SelectValue placeholder="Sort" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="newest">Newest First</SelectItem>
-                  <SelectItem value="oldest">Oldest First</SelectItem>
-                  <SelectItem value="cgpa-high">CGPA (High to Low)</SelectItem>
-                  <SelectItem value="cgpa-low">CGPA (Low to High)</SelectItem>
+                  <SelectItem value="newest">Newest</SelectItem>
+                  <SelectItem value="oldest">Oldest</SelectItem>
+                  <SelectItem value="cgpa-high">CGPA High</SelectItem>
+                  <SelectItem value="cgpa-low">CGPA Low</SelectItem>
                 </SelectContent>
               </Select>
 
               {(searchTerm || statusFilter !== "all" || cgpaFilter !== "all" || streamFilter !== "all" || sortBy !== "newest") && (
-                <Button variant="outline" onClick={clearFilters}>
+                <Button variant="outline" onClick={clearFilters} className="w-full lg:w-auto">
                   <X className="h-4 w-4 mr-2" />
                   Clear
                 </Button>
