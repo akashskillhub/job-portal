@@ -9,7 +9,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { formatDate } from "@/lib/utils";
 import { useToast } from "@/hooks/use-toast";
-import { Eye, FileText, Phone, Mail, GraduationCap, Award, X } from "lucide-react";
+import { Eye, FileText, Phone, Mail, GraduationCap, Award, X, ChevronLeft, ChevronRight } from "lucide-react";
+
+const ITEMS_PER_PAGE = 5;
 
 export default function CompanyApplicationsPage() {
   const [applications, setApplications] = useState<any[]>([]);
@@ -21,6 +23,7 @@ export default function CompanyApplicationsPage() {
   const [cgpaFilter, setCgpaFilter] = useState("all");
   const [streamFilter, setStreamFilter] = useState("all");
   const [sortBy, setSortBy] = useState("newest");
+  const [currentPage, setCurrentPage] = useState(1);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -29,6 +32,7 @@ export default function CompanyApplicationsPage() {
 
   useEffect(() => {
     applyFilters();
+    setCurrentPage(1);
   }, [applications, statusFilter, cgpaFilter, streamFilter, sortBy]);
 
   const fetchApplications = async () => {
@@ -143,6 +147,20 @@ export default function CompanyApplicationsPage() {
     setIsDialogOpen(true);
   };
 
+  // Pagination logic
+  const totalPages = Math.ceil(filteredApplications.length / ITEMS_PER_PAGE);
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const endIndex = startIndex + ITEMS_PER_PAGE;
+  const currentApplications = filteredApplications.slice(startIndex, endIndex);
+
+  const handlePreviousPage = () => {
+    setCurrentPage((prev) => Math.max(prev - 1, 1));
+  };
+
+  const handleNextPage = () => {
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  };
+
   if (loading) {
     return <div className="text-center py-8">Loading applications...</div>;
   }
@@ -230,68 +248,104 @@ export default function CompanyApplicationsPage() {
               No applications found
             </p>
           ) : (
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Student Name</TableHead>
-                  <TableHead>Email</TableHead>
-                  <TableHead>Job Title</TableHead>
-                  <TableHead>CGPA</TableHead>
-                  <TableHead>Stream</TableHead>
-                  <TableHead>Applied On</TableHead>
-                  <TableHead>Status</TableHead>
-                  <TableHead>Update Status</TableHead>
-                  <TableHead>Details</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {filteredApplications.map((app) => (
-                  <TableRow key={app._id}>
-                    <TableCell className="font-medium">
-                      {app.studentId?.firstName} {app.studentId?.lastName}
-                    </TableCell>
-                    <TableCell>{app.studentId?.email}</TableCell>
-                    <TableCell>{app.jobId?.title}</TableCell>
-                    <TableCell>{app.studentId?.cgpa}</TableCell>
-                    <TableCell>
-                      <Badge variant="secondary">{app.studentId?.stream}</Badge>
-                    </TableCell>
-                    <TableCell>{formatDate(app.appliedAt)}</TableCell>
-                    <TableCell>
-                      <Badge variant={getStatusColor(app.status)}>
-                        {app.status}
-                      </Badge>
-                    </TableCell>
-                    <TableCell>
-                      <Select
-                        value={app.status}
-                        onValueChange={(value) => handleStatusChange(app._id, value)}
-                      >
-                        <SelectTrigger className="w-[140px]">
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="applied">Applied</SelectItem>
-                          <SelectItem value="shortlisted">Shortlisted</SelectItem>
-                          <SelectItem value="rejected">Rejected</SelectItem>
-                          <SelectItem value="hired">Hired</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </TableCell>
-                    <TableCell>
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => handleViewDetails(app.studentId)}
-                      >
-                        <Eye className="h-4 w-4 mr-1" />
-                        View
-                      </Button>
-                    </TableCell>
+            <>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Student Name</TableHead>
+                    <TableHead>Email</TableHead>
+                    <TableHead>Job Title</TableHead>
+                    <TableHead>CGPA</TableHead>
+                    <TableHead>Stream</TableHead>
+                    <TableHead>Applied On</TableHead>
+                    <TableHead>Status</TableHead>
+                    <TableHead>Update Status</TableHead>
+                    <TableHead>Details</TableHead>
                   </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+                </TableHeader>
+                <TableBody>
+                  {currentApplications.map((app) => (
+                    <TableRow key={app._id}>
+                      <TableCell className="font-medium">
+                        {app.studentId?.firstName} {app.studentId?.lastName}
+                      </TableCell>
+                      <TableCell>{app.studentId?.email}</TableCell>
+                      <TableCell>{app.jobId?.title}</TableCell>
+                      <TableCell>{app.studentId?.cgpa}</TableCell>
+                      <TableCell>
+                        <Badge variant="secondary">{app.studentId?.stream}</Badge>
+                      </TableCell>
+                      <TableCell>{formatDate(app.appliedAt)}</TableCell>
+                      <TableCell>
+                        <Badge variant={getStatusColor(app.status)}>
+                          {app.status}
+                        </Badge>
+                      </TableCell>
+                      <TableCell>
+                        <Select
+                          value={app.status}
+                          onValueChange={(value) => handleStatusChange(app._id, value)}
+                        >
+                          <SelectTrigger className="w-[140px]">
+                            <SelectValue />
+                          </SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="applied">Applied</SelectItem>
+                            <SelectItem value="shortlisted">Shortlisted</SelectItem>
+                            <SelectItem value="rejected">Rejected</SelectItem>
+                            <SelectItem value="hired">Hired</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </TableCell>
+                      <TableCell>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => handleViewDetails(app.studentId)}
+                        >
+                          <Eye className="h-4 w-4 mr-1" />
+                          View
+                        </Button>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+
+              {/* Pagination Controls */}
+              {totalPages > 1 && (
+                <div className="flex items-center justify-between mt-4">
+                  <p className="text-sm text-muted-foreground">
+                    Showing {startIndex + 1} to {Math.min(endIndex, filteredApplications.length)} of {filteredApplications.length} applications
+                  </p>
+                  <div className="flex items-center gap-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={handlePreviousPage}
+                      disabled={currentPage === 1}
+                      className="bg-[#800000] text-white hover:bg-[#600000] disabled:bg-gray-300"
+                    >
+                      <ChevronLeft className="h-4 w-4 mr-1" />
+                      Previous
+                    </Button>
+                    <span className="text-sm font-medium">
+                      Page {currentPage} of {totalPages}
+                    </span>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={handleNextPage}
+                      disabled={currentPage === totalPages}
+                      className="bg-[#800000] text-white hover:bg-[#600000] disabled:bg-gray-300"
+                    >
+                      Next
+                      <ChevronRight className="h-4 w-4 ml-1" />
+                    </Button>
+                  </div>
+                </div>
+              )}
+            </>
           )}
         </CardContent>
       </Card>
