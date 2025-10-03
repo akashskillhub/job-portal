@@ -265,7 +265,7 @@ This will create:
 - 10 Companies (9 approved, 1 pending)
 - 4 Students
 - 3 Jobs
-- 4 Sample applications
+- 12 Sample applications
 
 ## Project Structure
 

@@ -361,16 +361,64 @@ async function seedDatabase() {
         coverLetter: "I have strong experience in full stack development.",
       },
       {
+        jobId: jobs[0]._id,
+        studentId: students[2]._id,
+        status: "applied",
+        coverLetter: "I would love to work on full stack projects.",
+      },
+      {
+        jobId: jobs[0]._id,
+        studentId: students[3]._id,
+        status: "rejected",
+        coverLetter: "I am eager to contribute to your team.",
+      },
+      {
+        jobId: jobs[1]._id,
+        studentId: students[0]._id,
+        status: "applied",
+        coverLetter: "Data analysis is my passion and I'm excited about this opportunity.",
+      },
+      {
+        jobId: jobs[1]._id,
+        studentId: students[1]._id,
+        status: "shortlisted",
+        coverLetter: "I have strong analytical skills and experience with data visualization.",
+      },
+      {
         jobId: jobs[1]._id,
         studentId: students[2]._id,
         status: "hired",
         coverLetter: "I am passionate about data analysis and eager to learn.",
       },
       {
+        jobId: jobs[1]._id,
+        studentId: students[3]._id,
+        status: "applied",
+        coverLetter: "Looking forward to applying my skills in data analysis.",
+      },
+      {
+        jobId: jobs[2]._id,
+        studentId: students[0]._id,
+        status: "applied",
+        coverLetter: "I have experience with backend technologies and microservices.",
+      },
+      {
         jobId: jobs[2]._id,
         studentId: students[1]._id,
         status: "applied",
         coverLetter: "My backend development skills would be a great fit.",
+      },
+      {
+        jobId: jobs[2]._id,
+        studentId: students[2]._id,
+        status: "shortlisted",
+        coverLetter: "I am proficient in Java and Spring Boot.",
+      },
+      {
+        jobId: jobs[2]._id,
+        studentId: students[3]._id,
+        status: "applied",
+        coverLetter: "Excited to work on scalable backend systems.",
       },
     ]);
     console.log(`✓ Created ${applications.length} applications`);
