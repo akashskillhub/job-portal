@@ -392,6 +392,96 @@ Students can only apply to jobs that match:
 | `EMAIL_USER` | Gmail address for sending emails | Yes |
 | `EMAIL_PASS` | Gmail app-specific password | Yes |
 
+## Deployment
+
+### Deploy to Vercel
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/akashskillhub/job-portal)
+
+#### Step-by-Step Deployment:
+
+1. **Push your code to GitHub** (Already done ✅)
+
+2. **Sign up/Login to Vercel**
+   - Go to [vercel.com](https://vercel.com)
+   - Sign up or login with your GitHub account
+
+3. **Import your repository**
+   - Click "Add New Project"
+   - Select your GitHub repository: `akashskillhub/job-portal`
+   - Click "Import"
+
+4. **Configure Environment Variables**
+
+   In Vercel dashboard, add these environment variables:
+
+   ```
+   MONGODB_URI=your_mongodb_atlas_connection_string
+   NEXTAUTH_URL=https://your-app-name.vercel.app
+   NEXTAUTH_SECRET=your_generated_secret_key
+   JWT_SECRET=your_generated_jwt_secret
+   EMAIL_USER=your_email@gmail.com
+   EMAIL_PASS=your_gmail_app_password
+   ```
+
+   **To generate secrets:**
+   ```bash
+   node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+   ```
+
+5. **Deploy**
+   - Click "Deploy"
+   - Wait for build to complete (2-3 minutes)
+   - Your app will be live at `https://your-app-name.vercel.app`
+
+6. **Seed the Production Database**
+
+   After deployment, run the seed script with your production database:
+
+   ```bash
+   # Update .env with production MONGODB_URI
+   npm run seed
+   ```
+
+#### Important Notes:
+
+- ⚠️ **MongoDB Atlas**: Make sure to use MongoDB Atlas (cloud) for production, not localhost
+- ⚠️ **Whitelist IPs**: In MongoDB Atlas, whitelist Vercel's IP addresses (or use 0.0.0.0/0)
+- ⚠️ **NEXTAUTH_URL**: Must match your Vercel deployment URL
+- ⚠️ **Gmail**: Enable 2-factor authentication and create an app-specific password
+
+#### Post-Deployment:
+
+1. **Test the application**
+   - Visit your deployed URL
+   - Test login with seeded accounts
+   - Verify email notifications work
+
+2. **Monitor logs**
+   - Check Vercel dashboard for any errors
+   - Monitor MongoDB Atlas for database connections
+
+3. **Custom Domain (Optional)**
+   - Go to Vercel Project Settings
+   - Add your custom domain
+   - Update `NEXTAUTH_URL` environment variable
+
+### Alternative Deployment Options
+
+#### Deploy to Railway
+1. Sign up at [railway.app](https://railway.app)
+2. Click "New Project" → "Deploy from GitHub"
+3. Select your repository
+4. Add environment variables
+5. Deploy
+
+#### Deploy to Render
+1. Sign up at [render.com](https://render.com)
+2. Click "New Web Service"
+3. Connect your GitHub repository
+4. Add environment variables
+5. Deploy
+
 ## Development Team
 
 **Designed and Developed by:**
