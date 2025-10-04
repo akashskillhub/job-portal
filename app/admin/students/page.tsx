@@ -169,7 +169,7 @@ export default function StudentsPage() {
         <CardContent>
           <div className="space-y-4 mb-6">
             <div className="flex flex-col md:flex-row gap-4">
-              <div className="flex-1 relative">
+              <div className="relative w-full md:w-[300px]">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input
                   placeholder="Search by name, email, or roll number..."
@@ -179,7 +179,7 @@ export default function StudentsPage() {
                 />
               </div>
               <Select value={collegeFilter} onValueChange={setCollegeFilter}>
-                <SelectTrigger className="w-full md:w-[200px]">
+                <SelectTrigger className="w-full md:w-[160px]">
                   <SelectValue placeholder="College" />
                 </SelectTrigger>
                 <SelectContent>
@@ -192,7 +192,7 @@ export default function StudentsPage() {
                 </SelectContent>
               </Select>
               <Select value={streamFilter} onValueChange={setStreamFilter}>
-                <SelectTrigger className="w-full md:w-[180px]">
+                <SelectTrigger className="w-full md:w-[140px]">
                   <SelectValue placeholder="Stream" />
                 </SelectTrigger>
                 <SelectContent>
@@ -204,10 +204,8 @@ export default function StudentsPage() {
                   ))}
                 </SelectContent>
               </Select>
-            </div>
-            <div className="flex flex-col md:flex-row gap-4">
               <Select value={cgpaFilter} onValueChange={setCgpaFilter}>
-                <SelectTrigger className="w-full md:w-[180px]">
+                <SelectTrigger className="w-full md:w-[150px]">
                   <SelectValue placeholder="CGPA Range" />
                 </SelectTrigger>
                 <SelectContent>
@@ -219,7 +217,7 @@ export default function StudentsPage() {
                 </SelectContent>
               </Select>
               <Select value={sortBy} onValueChange={setSortBy}>
-                <SelectTrigger className="w-full md:w-[180px]">
+                <SelectTrigger className="w-full md:w-[150px]">
                   <SelectValue placeholder="Sort by" />
                 </SelectTrigger>
                 <SelectContent>
@@ -229,13 +227,13 @@ export default function StudentsPage() {
                   <SelectItem value="year">Graduation Year</SelectItem>
                 </SelectContent>
               </Select>
-              {(searchTerm || collegeFilter !== "all" || streamFilter !== "all" || cgpaFilter !== "all" || sortBy !== "name") && (
-                <Button variant="outline" onClick={clearFilters}>
-                  <X className="h-4 w-4 mr-2" />
-                  Clear Filters
-                </Button>
-              )}
             </div>
+            {(searchTerm || collegeFilter !== "all" || streamFilter !== "all" || cgpaFilter !== "all" || sortBy !== "name") && (
+              <Button variant="outline" onClick={clearFilters}>
+                <X className="h-4 w-4 mr-2" />
+                Clear Filters
+              </Button>
+            )}
           </div>
 
           {filteredStudents.length === 0 ? (

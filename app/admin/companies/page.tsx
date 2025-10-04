@@ -163,9 +163,9 @@ export default function CompaniesPage() {
           <CardTitle>All Companies ({filteredCompanies.length})</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="space-y-4 mb-6">
-            <div className="flex flex-col md:flex-row gap-4">
-              <div className="flex-1 relative">
+          <div className="mb-6">
+            <div className="flex flex-col lg:flex-row gap-3">
+              <div className="relative w-full lg:flex-1">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                 <Input
                   placeholder="Search by name, email, or industry..."
@@ -175,7 +175,7 @@ export default function CompaniesPage() {
                 />
               </div>
               <Select value={industryFilter} onValueChange={setIndustryFilter}>
-                <SelectTrigger className="w-full md:w-[200px]">
+                <SelectTrigger className="w-full lg:w-[150px]">
                   <SelectValue placeholder="Industry" />
                 </SelectTrigger>
                 <SelectContent>
@@ -188,7 +188,7 @@ export default function CompaniesPage() {
                 </SelectContent>
               </Select>
               <Select value={sizeFilter} onValueChange={setSizeFilter}>
-                <SelectTrigger className="w-full md:w-[180px]">
+                <SelectTrigger className="w-full lg:w-[130px]">
                   <SelectValue placeholder="Size" />
                 </SelectTrigger>
                 <SelectContent>
@@ -200,10 +200,8 @@ export default function CompaniesPage() {
                   ))}
                 </SelectContent>
               </Select>
-            </div>
-            <div className="flex flex-col md:flex-row gap-4">
               <Select value={cityFilter} onValueChange={setCityFilter}>
-                <SelectTrigger className="w-full md:w-[180px]">
+                <SelectTrigger className="w-full lg:w-[130px]">
                   <SelectValue placeholder="City" />
                 </SelectTrigger>
                 <SelectContent>
@@ -216,7 +214,7 @@ export default function CompaniesPage() {
                 </SelectContent>
               </Select>
               <Select value={statusFilter} onValueChange={setStatusFilter}>
-                <SelectTrigger className="w-full md:w-[180px]">
+                <SelectTrigger className="w-full lg:w-[130px]">
                   <SelectValue placeholder="Status" />
                 </SelectTrigger>
                 <SelectContent>
@@ -226,7 +224,7 @@ export default function CompaniesPage() {
                 </SelectContent>
               </Select>
               <Select value={sortBy} onValueChange={setSortBy}>
-                <SelectTrigger className="w-full md:w-[180px]">
+                <SelectTrigger className="w-full lg:w-[140px]">
                   <SelectValue placeholder="Sort by" />
                 </SelectTrigger>
                 <SelectContent>
@@ -236,9 +234,9 @@ export default function CompaniesPage() {
                 </SelectContent>
               </Select>
               {(searchTerm || industryFilter !== "all" || sizeFilter !== "all" || statusFilter !== "all" || cityFilter !== "all" || sortBy !== "name") && (
-                <Button variant="outline" onClick={clearFilters}>
+                <Button variant="outline" onClick={clearFilters} className="w-full lg:w-auto">
                   <X className="h-4 w-4 mr-2" />
-                  Clear Filters
+                  Clear
                 </Button>
               )}
             </div>

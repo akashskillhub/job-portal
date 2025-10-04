@@ -67,6 +67,66 @@ async function seedDatabase() {
         phone: "9876543211",
         establishedYear: 1978,
       },
+      {
+        name: "IIT Delhi",
+        email: "iitdelhi@example.com",
+        password: hashedPassword,
+        address: "Hauz Khas",
+        city: "New Delhi",
+        state: "Delhi",
+        phone: "9876543212",
+        establishedYear: 1961,
+      },
+      {
+        name: "NIT Trichy",
+        email: "nittrichy@example.com",
+        password: hashedPassword,
+        address: "Tiruchirappalli",
+        city: "Trichy",
+        state: "Tamil Nadu",
+        phone: "9876543213",
+        establishedYear: 1964,
+      },
+      {
+        name: "BITS Pilani",
+        email: "bitspilani@example.com",
+        password: hashedPassword,
+        address: "Vidya Vihar Campus",
+        city: "Pilani",
+        state: "Rajasthan",
+        phone: "9876543214",
+        establishedYear: 1964,
+      },
+      {
+        name: "VIT Vellore",
+        email: "vitvellore@example.com",
+        password: hashedPassword,
+        address: "Katpadi, Vellore",
+        city: "Vellore",
+        state: "Tamil Nadu",
+        phone: "9876543215",
+        establishedYear: 1984,
+      },
+      {
+        name: "IIT Bombay",
+        email: "iitbombay@example.com",
+        password: hashedPassword,
+        address: "Powai",
+        city: "Mumbai",
+        state: "Maharashtra",
+        phone: "9876543216",
+        establishedYear: 1958,
+      },
+      {
+        name: "IIIT Hyderabad",
+        email: "iiithyd@example.com",
+        password: hashedPassword,
+        address: "Gachibowli",
+        city: "Hyderabad",
+        state: "Telangana",
+        phone: "9876543217",
+        establishedYear: 1998,
+      },
     ]);
     console.log(`✓ Created ${colleges.length} colleges`);
 
@@ -212,8 +272,148 @@ async function seedDatabase() {
         phone: "9876543221",
         isApproved: false, // Pending approval
       },
+      {
+        name: "HealthTech Innovations",
+        email: "contact@healthtech.com",
+        password: hashedPassword,
+        website: "https://healthtech.com",
+        industry: "Healthcare Technology",
+        size: "51-200",
+        description: "Healthcare management and telemedicine solutions",
+        address: "789 Health Street",
+        city: "Pune",
+        state: "Maharashtra",
+        phone: "9876543222",
+        isApproved: false,
+      },
+      {
+        name: "AgriTech Solutions",
+        email: "info@agritech.com",
+        password: hashedPassword,
+        website: "https://agritech.com",
+        industry: "Agriculture Technology",
+        size: "11-50",
+        description: "Smart farming and agricultural technology",
+        address: "321 Farm Road",
+        city: "Jaipur",
+        state: "Rajasthan",
+        phone: "9876543223",
+        isApproved: false,
+      },
+      {
+        name: "E-Commerce Hub",
+        email: "hr@ecommhub.com",
+        password: hashedPassword,
+        website: "https://ecommhub.com",
+        industry: "E-Commerce",
+        size: "501-1000",
+        description: "Online marketplace and retail platform",
+        address: "555 Commerce Plaza",
+        city: "Mumbai",
+        state: "Maharashtra",
+        phone: "9876543224",
+        isApproved: false,
+      },
+      {
+        name: "Digital Marketing Pro",
+        email: "careers@digimarket.com",
+        password: hashedPassword,
+        website: "https://digimarket.com",
+        industry: "Digital Marketing",
+        size: "51-200",
+        description: "Digital marketing and SEO services",
+        address: "888 Marketing Lane",
+        city: "Delhi",
+        state: "Delhi",
+        phone: "9876543225",
+        isApproved: false,
+      },
+      {
+        name: "BlockChain Technologies",
+        email: "jobs@blockchain.com",
+        password: hashedPassword,
+        website: "https://blockchain.com",
+        industry: "Blockchain",
+        size: "11-50",
+        description: "Blockchain and cryptocurrency solutions",
+        address: "999 Crypto Street",
+        city: "Bangalore",
+        state: "Karnataka",
+        phone: "9876543226",
+        isApproved: false,
+      },
+      {
+        name: "IoT Systems India",
+        email: "recruitment@iotsystems.in",
+        password: hashedPassword,
+        website: "https://iotsystems.in",
+        industry: "Internet of Things",
+        size: "51-200",
+        description: "IoT devices and smart home solutions",
+        address: "777 IoT Park",
+        city: "Hyderabad",
+        state: "Telangana",
+        phone: "9876543227",
+        isApproved: false,
+      },
+      {
+        name: "RoboTech Automation",
+        email: "hr@robotech.com",
+        password: hashedPassword,
+        website: "https://robotech.com",
+        industry: "Robotics & Automation",
+        size: "201-500",
+        description: "Industrial automation and robotics",
+        address: "444 Robot Avenue",
+        city: "Chennai",
+        state: "Tamil Nadu",
+        phone: "9876543228",
+        isApproved: false,
+      },
+      {
+        name: "Green Energy Solutions",
+        email: "contact@greenenergy.com",
+        password: hashedPassword,
+        website: "https://greenenergy.com",
+        industry: "Renewable Energy",
+        size: "51-200",
+        description: "Solar and wind energy solutions",
+        address: "666 Energy Plaza",
+        city: "Ahmedabad",
+        state: "Gujarat",
+        phone: "9876543229",
+        isApproved: false,
+      },
+      {
+        name: "AR/VR Studios",
+        email: "jobs@arvrstudios.com",
+        password: hashedPassword,
+        website: "https://arvrstudios.com",
+        industry: "Augmented Reality",
+        size: "11-50",
+        description: "AR/VR experiences and metaverse development",
+        address: "111 Virtual Street",
+        city: "Bangalore",
+        state: "Karnataka",
+        phone: "9876543230",
+        isApproved: false,
+      },
+      {
+        name: "Space Tech India",
+        email: "careers@spacetech.in",
+        password: hashedPassword,
+        website: "https://spacetech.in",
+        industry: "Space Technology",
+        size: "51-200",
+        description: "Satellite and space technology solutions",
+        address: "222 Space Center",
+        city: "Bangalore",
+        state: "Karnataka",
+        phone: "9876543231",
+        isApproved: false,
+      },
     ]);
-    console.log(`✓ Created ${companies.length} companies (9 approved, 1 pending approval)`);
+    console.log(`✓ Created ${companies.length} companies (9 approved, 10 pending approval)`);
 
     // Create Students
     const students = await Student.insertMany([
@@ -268,6 +468,149 @@ async function seedDatabase() {
         cgpa: 8.2,
         phone: "9876543218",
         skills: ["Embedded Systems", "IoT", "C++", "Arduino"],
+      },
+      {
+        email: "amit.sharma@student.com",
+        password: hashedPassword,
+        firstName: "Amit",
+        lastName: "Sharma",
+        collegeId: colleges[0]._id,
+        rollNumber: "CS2021003",
+        stream: "Computer Science",
+        graduationYear: 2025,
+        cgpa: 8.8,
+        phone: "9876543219",
+        skills: ["React", "TypeScript", "Next.js", "Tailwind CSS"],
+      },
+      {
+        email: "neha.gupta@student.com",
+        password: hashedPassword,
+        firstName: "Neha",
+        lastName: "Gupta",
+        collegeId: colleges[0]._id,
+        rollNumber: "IT2021002",
+        stream: "Information Technology",
+        graduationYear: 2025,
+        cgpa: 8.0,
+        phone: "9876543220",
+        skills: ["Java", "Python", "SQL", "AWS"],
+      },
+      {
+        email: "vikram.singh@student.com",
+        password: hashedPassword,
+        firstName: "Vikram",
+        lastName: "Singh",
+        collegeId: colleges[1]._id,
+        rollNumber: "CS2021004",
+        stream: "Computer Science",
+        graduationYear: 2025,
+        cgpa: 7.5,
+        phone: "9876543221",
+        skills: ["JavaScript", "Vue.js", "Firebase", "MongoDB"],
+      },
+      {
+        email: "sneha.reddy@student.com",
+        password: hashedPassword,
+        firstName: "Sneha",
+        lastName: "Reddy",
+        collegeId: colleges[1]._id,
+        rollNumber: "IT2021003",
+        stream: "Information Technology",
+        graduationYear: 2025,
+        cgpa: 8.6,
+        phone: "9876543222",
+        skills: ["Python", "Django", "PostgreSQL", "Docker"],
+      },
+      {
+        email: "rahul.verma@student.com",
+        password: hashedPassword,
+        firstName: "Rahul",
+        lastName: "Verma",
+        collegeId: colleges[0]._id,
+        rollNumber: "EC2021002",
+        stream: "Electronics",
+        graduationYear: 2025,
+        cgpa: 7.9,
+        phone: "9876543223",
+        skills: ["C", "VLSI Design", "Embedded C", "Microcontrollers"],
+      },
+      {
+        email: "ananya.iyer@student.com",
+        password: hashedPassword,
+        firstName: "Ananya",
+        lastName: "Iyer",
+        collegeId: colleges[1]._id,
+        rollNumber: "CS2021005",
+        stream: "Computer Science",
+        graduationYear: 2025,
+        cgpa: 9.2,
+        phone: "9876543224",
+        skills: ["Python", "Machine Learning", "Deep Learning", "NLP"],
+      },
+      {
+        email: "karan.mehta@student.com",
+        password: hashedPassword,
+        firstName: "Karan",
+        lastName: "Mehta",
+        collegeId: colleges[0]._id,
+        rollNumber: "CS2021006",
+        stream: "Computer Science",
+        graduationYear: 2025,
+        cgpa: 8.3,
+        phone: "9876543225",
+        skills: ["Angular", "TypeScript", "Node.js", "PostgreSQL"],
+      },
+      {
+        email: "divya.nair@student.com",
+        password: hashedPassword,
+        firstName: "Divya",
+        lastName: "Nair",
+        collegeId: colleges[0]._id,
+        rollNumber: "IT2021004",
+        stream: "Information Technology",
+        graduationYear: 2025,
+        cgpa: 8.7,
+        phone: "9876543226",
+        skills: ["React Native", "Flutter", "Firebase", "MongoDB"],
+      },
+      {
+        email: "arjun.reddy@student.com",
+        password: hashedPassword,
+        firstName: "Arjun",
+        lastName: "Reddy",
+        collegeId: colleges[1]._id,
+        rollNumber: "IT2021005",
+        stream: "Information Technology",
+        graduationYear: 2025,
+        cgpa: 7.6,
+        phone: "9876543227",
+        skills: ["Java", "Kotlin", "Android", "REST API"],
+      },
+      {
+        email: "pooja.singh@student.com",
+        password: hashedPassword,
+        firstName: "Pooja",
+        lastName: "Singh",
+        collegeId: colleges[0]._id,
+        rollNumber: "EC2021003",
+        stream: "Electronics",
+        graduationYear: 2025,
+        cgpa: 8.1,
+        phone: "9876543228",
+        skills: ["MATLAB", "Signal Processing", "Arduino", "PCB Design"],
+      },
+      {
+        email: "rohan.kapoor@student.com",
+        password: hashedPassword,
+        firstName: "Rohan",
+        lastName: "Kapoor",
+        collegeId: colleges[1]._id,
+        rollNumber: "CS2021006",
+        stream: "Computer Science",
+        graduationYear: 2025,
+        cgpa: 8.9,
+        phone: "9876543229",
+        skills: ["C++", "DSA", "System Design", "Competitive Programming"],
       },
     ]);
     console.log(`✓ Created ${students.length} students`);
@@ -429,11 +772,29 @@ async function seedDatabase() {
     console.log("\n🔐 Admin:");
     console.log("   Email: admin@example.com");
     console.log("   Password: password123");
-    console.log("\n🏫 College 1:");
+    console.log("\n🏫 College 1 - MIT Engineering College:");
     console.log("   Email: mit@example.com");
     console.log("   Password: password123");
-    console.log("\n🏫 College 2:");
+    console.log("\n🏫 College 2 - Anna University:");
     console.log("   Email: anna@example.com");
+    console.log("   Password: password123");
+    console.log("\n🏫 College 3 - IIT Delhi:");
+    console.log("   Email: iitdelhi@example.com");
+    console.log("   Password: password123");
+    console.log("\n🏫 College 4 - NIT Trichy:");
+    console.log("   Email: nittrichy@example.com");
+    console.log("   Password: password123");
+    console.log("\n🏫 College 5 - BITS Pilani:");
+    console.log("   Email: bitspilani@example.com");
+    console.log("   Password: password123");
+    console.log("\n🏫 College 6 - VIT Vellore:");
+    console.log("   Email: vitvellore@example.com");
+    console.log("   Password: password123");
+    console.log("\n🏫 College 7 - IIT Bombay:");
+    console.log("   Email: iitbombay@example.com");
+    console.log("   Password: password123");
+    console.log("\n🏫 College 8 - IIIT Hyderabad:");
+    console.log("   Email: iiithyd@example.com");
     console.log("   Password: password123");
     console.log("\n🏢 Company 1 - TechCorp Solutions (Approved):");
     console.log("   Email: hr@techcorp.com");
@@ -465,17 +826,50 @@ async function seedDatabase() {
     console.log("\n🏢 Company 10 - EduTech Platform (Pending Approval):");
     console.log("   Email: careers@edutech.com");
     console.log("   Password: password123");
-    console.log("\n🎓 Student 1:");
+    console.log("\n🎓 Student 1 - John Doe (CS, MIT):");
     console.log("   Email: john.doe@student.com");
     console.log("   Password: password123");
-    console.log("\n🎓 Student 2:");
+    console.log("\n🎓 Student 2 - Jane Smith (CS, MIT):");
     console.log("   Email: jane.smith@student.com");
     console.log("   Password: password123");
-    console.log("\n🎓 Student 3:");
+    console.log("\n🎓 Student 3 - Raj Kumar (IT, Anna Univ):");
     console.log("   Email: raj.kumar@student.com");
     console.log("   Password: password123");
-    console.log("\n🎓 Student 4:");
+    console.log("\n🎓 Student 4 - Priya Patel (EC, Anna Univ):");
     console.log("   Email: priya.patel@student.com");
+    console.log("   Password: password123");
+    console.log("\n🎓 Student 5 - Amit Sharma (CS, MIT):");
+    console.log("   Email: amit.sharma@student.com");
+    console.log("   Password: password123");
+    console.log("\n🎓 Student 6 - Neha Gupta (IT, MIT):");
+    console.log("   Email: neha.gupta@student.com");
+    console.log("   Password: password123");
+    console.log("\n🎓 Student 7 - Vikram Singh (CS, Anna Univ):");
+    console.log("   Email: vikram.singh@student.com");
+    console.log("   Password: password123");
+    console.log("\n🎓 Student 8 - Sneha Reddy (IT, Anna Univ):");
+    console.log("   Email: sneha.reddy@student.com");
+    console.log("   Password: password123");
+    console.log("\n🎓 Student 9 - Rahul Verma (EC, MIT):");
+    console.log("   Email: rahul.verma@student.com");
+    console.log("   Password: password123");
+    console.log("\n🎓 Student 10 - Ananya Iyer (CS, Anna Univ):");
+    console.log("   Email: ananya.iyer@student.com");
+    console.log("   Password: password123");
+    console.log("\n🎓 Student 11 - Karan Mehta (CS, MIT):");
+    console.log("   Email: karan.mehta@student.com");
+    console.log("   Password: password123");
+    console.log("\n🎓 Student 12 - Divya Nair (IT, MIT):");
+    console.log("   Email: divya.nair@student.com");
+    console.log("   Password: password123");
+    console.log("\n🎓 Student 13 - Arjun Reddy (IT, Anna Univ):");
+    console.log("   Email: arjun.reddy@student.com");
+    console.log("   Password: password123");
+    console.log("\n🎓 Student 14 - Pooja Singh (EC, MIT):");
+    console.log("   Email: pooja.singh@student.com");
+    console.log("   Password: password123");
+    console.log("\n🎓 Student 15 - Rohan Kapoor (CS, Anna Univ):");
+    console.log("   Email: rohan.kapoor@student.com");
     console.log("   Password: password123");
     console.log("\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n");
 

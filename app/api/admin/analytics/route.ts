@@ -74,6 +74,67 @@ export async function GET(req: NextRequest) {
       .populate("jobId", "title")
       .lean();
 
+    // Get application status distribution
+    const applicationStatusDist = await Application.aggregate([
+      {
+        $group: {
+          _id: "$status",
+          count: { $sum: 1 },
+        },
+      },
+    ]);
+
+    // Get stream-wise student distribution
+    const streamDistribution = await Student.aggregate([
+      {
+        $group: {
+          _id: "$stream",
+          count: { $sum: 1 },
+        },
+      },
+      { $sort: { count: -1 } },
+    ]);
+
+    // Get top companies by job postings
+    const topCompaniesByJobs = await Job.aggregate([
+      {
+        $lookup: {
+          from: "companies",
+          localField: "companyId",
+          foreignField: "_id",
+          as: "company",
+        },
+      },
+      { $unwind: "$company" },
+      {
+        $group: {
+          _id: "$company._id",
+          companyName: { $first: "$company.name" },
+          jobCount: { $sum: 1 },
+        },
+      },
+      { $sort: { jobCount: -1 } },
+      { $limit: 5 },
+    ]);
+
+    // Get monthly application trend (last 6 months)
+    const sixMonthsAgo = new Date();
+    sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
+
+    const monthlyTrend = await Application.aggregate([
+      { $match: { createdAt: { $gte: sixMonthsAgo } } },
+      {
+        $group: {
+          _id: {
+            year: { $year: "$createdAt" },
+            month: { $month: "$createdAt" },
+          },
+          count: { $sum: 1 },
+        },
+      },
+      { $sort: { "_id.year": 1, "_id.month": 1 } },
+    ]);
+
     return apiResponse({
       totalStudents,
       totalCompanies,
@@ -84,6 +145,10 @@ export async function GET(req: NextRequest) {
       pendingApprovals,
       placementsPerCollege,
       recentApplications,
+      applicationStatusDist,
+      streamDistribution,
+      topCompaniesByJobs,
+      monthlyTrend,
     });
   } catch (error: any) {
     return apiError(error.message || "Failed to fetch analytics", 500);

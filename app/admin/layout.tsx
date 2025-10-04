@@ -2,7 +2,7 @@ import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { authOptions } from "@/lib/auth";
 import { DashboardLayout } from "@/components/dashboard-layout";
-import { Building2, Briefcase, GraduationCap, CheckCircle } from "lucide-react";
+import { Building2, Briefcase, GraduationCap, CheckCircle, BarChart3 } from "lucide-react";
 
 export default async function AdminLayout({
   children,
@@ -17,6 +17,7 @@ export default async function AdminLayout({
 
   const navItems = [
     { href: "/admin/dashboard", label: "Dashboard", icon: <Building2 className="h-4 w-4" /> },
+    { href: "/admin/analytics", label: "Analytics", icon: <BarChart3 className="h-4 w-4" /> },
     { href: "/admin/colleges", label: "Colleges", icon: <Building2 className="h-4 w-4" /> },
     { href: "/admin/students", label: "Students", icon: <GraduationCap className="h-4 w-4" /> },
     { href: "/admin/companies", label: "Companies", icon: <Briefcase className="h-4 w-4" /> },
